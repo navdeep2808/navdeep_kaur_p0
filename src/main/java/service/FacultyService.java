@@ -1,9 +1,9 @@
-package dao;
+package service;
 
 import exception.SystemException;
 import model.FacultyPojo;
 
-public interface FacultyDao {
+public interface FacultyService {
 	
 	FacultyPojo registerFaculty(FacultyPojo facultyPojo) throws SystemException;
 	

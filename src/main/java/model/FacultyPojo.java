@@ -10,13 +10,12 @@ public class FacultyPojo {
 	private String facultyDesignation;
 	private String facultyAddress;
 	private String facultyEmailId;
-	private long facultyPhoneNumber;
+	//private long facultyPhoneNumber;
 	private String facultyUserName;
 	private String facultyPassword;
-	
 	public FacultyPojo(int facultyId, String facultyFirstName, String facultyLastName, String facultyGender,
 			String facultyDepartment, String facultyDesignation, String facultyAddress, String facultyEmailId,
-			long facultyPhoneNumber, String facultyUserName, String facultyPassword) {
+			String facultyUserName, String facultyPassword) {
 		super();
 		this.facultyId = facultyId;
 		this.facultyFirstName = facultyFirstName;
@@ -26,9 +25,11 @@ public class FacultyPojo {
 		this.facultyDesignation = facultyDesignation;
 		this.facultyAddress = facultyAddress;
 		this.facultyEmailId = facultyEmailId;
-		this.facultyPhoneNumber = facultyPhoneNumber;
 		this.facultyUserName = facultyUserName;
 		this.facultyPassword = facultyPassword;
+	}
+	public FacultyPojo() {
+		// TODO Auto-generated constructor stub
 	}
 	public int getFacultyId() {
 		return facultyId;
@@ -78,12 +79,6 @@ public class FacultyPojo {
 	public void setFacultyEmailId(String facultyEmailId) {
 		this.facultyEmailId = facultyEmailId;
 	}
-	public long getFacultyPhoneNumber() {
-		return facultyPhoneNumber;
-	}
-	public void setFacultyPhoneNumber(long facultyPhoneNumber) {
-		this.facultyPhoneNumber = facultyPhoneNumber;
-	}
 	public String getFacultyUserName() {
 		return facultyUserName;
 	}
@@ -101,9 +96,10 @@ public class FacultyPojo {
 		return "FacultyPojo [facultyId=" + facultyId + ", facultyFirstName=" + facultyFirstName + ", facultyLastName="
 				+ facultyLastName + ", facultyGender=" + facultyGender + ", facultyDepartment=" + facultyDepartment
 				+ ", facultyDesignation=" + facultyDesignation + ", facultyAddress=" + facultyAddress
-				+ ", facultyEmailId=" + facultyEmailId + ", facultyPhoneNumber=" + facultyPhoneNumber
-				+ ", facultyUserName=" + facultyUserName + ", facultyPassword=" + facultyPassword + "]";
+				+ ", facultyEmailId=" + facultyEmailId + ", facultyUserName=" + facultyUserName + ", facultyPassword="
+				+ facultyPassword + "]";
 	}
+	
 	
 	
 }

@@ -17,20 +17,18 @@ public class CoursePojo {
 		private String courseInstructorName;
 		private String courseImageUrl;
 		private String courseCode;
-
-		
-		
-		public CoursePojo(int courseId, String courseName, String courseDescription, int courseCost,
-				int courseDuration, String courseInstructorName, String courseImageUrl, String courseCode) {
+				
+		public CoursePojo(int courseId, String courseName, String courseDescription, int courseCost, int courseDuration,
+				String courseInstructorName, String courseImageUrl, String courseCode) {
 			super();
 			this.courseId = courseId;
 			this.courseName = courseName;
-			this.courseCode = courseCode;
 			this.courseDescription = courseDescription;
 			this.courseCost = courseCost;
 			this.courseDuration = courseDuration;
 			this.courseInstructorName = courseInstructorName;
 			this.courseImageUrl = courseImageUrl;
+			this.courseCode = courseCode;
 		}
 
 
@@ -124,6 +122,67 @@ public class CoursePojo {
 			this.courseImageUrl = courseImageUrl;
 		}
 
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((courseCode == null) ? 0 : courseCode.hashCode());
+			result = prime * result + courseCost;
+			result = prime * result + ((courseDescription == null) ? 0 : courseDescription.hashCode());
+			result = prime * result + courseDuration;
+			result = prime * result + courseId;
+			result = prime * result + ((courseImageUrl == null) ? 0 : courseImageUrl.hashCode());
+			result = prime * result + ((courseInstructorName == null) ? 0 : courseInstructorName.hashCode());
+			result = prime * result + ((courseName == null) ? 0 : courseName.hashCode());
+			return result;
+		}
+
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			CoursePojo other = (CoursePojo) obj;
+			if (courseCode == null) {
+				if (other.courseCode != null)
+					return false;
+			} else if (!courseCode.equals(other.courseCode))
+				return false;
+			if (courseCost != other.courseCost)
+				return false;
+			if (courseDescription == null) {
+				if (other.courseDescription != null)
+					return false;
+			} else if (!courseDescription.equals(other.courseDescription))
+				return false;
+			if (courseDuration != other.courseDuration)
+				return false;
+			if (courseId != other.courseId)
+				return false;
+			if (courseImageUrl == null) {
+				if (other.courseImageUrl != null)
+					return false;
+			} else if (!courseImageUrl.equals(other.courseImageUrl))
+				return false;
+			if (courseInstructorName == null) {
+				if (other.courseInstructorName != null)
+					return false;
+			} else if (!courseInstructorName.equals(other.courseInstructorName))
+				return false;
+			if (courseName == null) {
+				if (other.courseName != null)
+					return false;
+			} else if (!courseName.equals(other.courseName))
+				return false;
+			return true;
+		}
+
+
 		@Override
 		public String toString() {
 			return "CoursePojo [courseId=" + courseId + ", courseName=" + courseName + ", courseDescription="
@@ -131,5 +190,6 @@ public class CoursePojo {
 					+ ", courseInstructorName=" + courseInstructorName + ", courseImageUrl=" + courseImageUrl
 					+ ", courseCode=" + courseCode + "]";
 		}
+		
 
 }

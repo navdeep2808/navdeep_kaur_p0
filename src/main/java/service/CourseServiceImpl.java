@@ -1,9 +1,7 @@
 package service;
 
 import java.util.List;
-
 import dao.CourseDao;
-import dao.CourseDaoCollectionImpl;
 import dao.CourseDaoDatabaseImpl;
 import exception.EmptyCourseCatalogException;
 import exception.SystemException;
