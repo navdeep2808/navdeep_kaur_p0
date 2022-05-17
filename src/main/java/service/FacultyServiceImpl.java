@@ -1,7 +1,7 @@
 package service;
 
 import dao.FacultyDao;
-import dao.FacultyDaoRegistrationImpl;
+import dao.FacultyDaoImpl;
 import exception.SystemException;
 import model.FacultyPojo;
 
@@ -9,7 +9,7 @@ public class FacultyServiceImpl implements FacultyService {
 	FacultyDao facultyDao;
 
 	public FacultyServiceImpl() {
-		facultyDao = new FacultyDaoRegistrationImpl();	}
+		facultyDao = new FacultyDaoImpl();	}
 
 	@Override
 	public FacultyPojo registerFaculty(FacultyPojo facultyPojo) throws SystemException {
@@ -19,14 +19,13 @@ public class FacultyServiceImpl implements FacultyService {
 
 	@Override
 	public FacultyPojo loginFaculty(FacultyPojo facultyPojo) throws SystemException {
-		// TODO Auto-generated method stub
-		return null;
+		return facultyDao.loginFaculty(facultyPojo);
 	}
 
 	@Override
 	public FacultyPojo logoutFaculty(FacultyPojo facultyPojo) throws SystemException {
-		// TODO Auto-generated method stub
-		return null;
+		return facultyDao.logoutFaculty(facultyPojo);
+
 	}
 
 	@Override

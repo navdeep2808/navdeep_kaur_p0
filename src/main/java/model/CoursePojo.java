@@ -11,42 +11,38 @@ public class CoursePojo {
 	
 		private int courseId;
 		private String courseName;
-		private String courseDescription;
+		private String courseCode;
 		private int courseCost;
 		private int courseDuration;
 		private String courseInstructorName;
-		private String courseImageUrl;
-		private String courseCode;
-				
-		public CoursePojo(int courseId, String courseName, String courseDescription, int courseCost, int courseDuration,
-				String courseInstructorName, String courseImageUrl, String courseCode) {
-			super();
-			this.courseId = courseId;
-			this.courseName = courseName;
-			this.courseDescription = courseDescription;
-			this.courseCost = courseCost;
-			this.courseDuration = courseDuration;
-			this.courseInstructorName = courseInstructorName;
-			this.courseImageUrl = courseImageUrl;
-			this.courseCode = courseCode;
-		}
-
-
+		private String courseDescription;
+		private int totalStudentsRegistered=0;
+		private int maximumStudentsAllowed=20;
+	//	private String courseImageUrl;
+	
 		public CoursePojo() {
 			// TODO Auto-generated constructor stub
 		}
 
+		public CoursePojo(int courseId, String courseName, String courseCode, int courseCost, int courseDuration,
+			String courseInstructorName, String courseDescription, int totalStudentsRegistered,
+			int maximumStudentsAllowed) {
+		super();
+		this.courseId = courseId;
+		this.courseName = courseName;
+		this.courseCode = courseCode;
+		this.courseCost = courseCost;
+		this.courseDuration = courseDuration;
+		this.courseInstructorName = courseInstructorName;
+		this.courseDescription = courseDescription;
+		this.totalStudentsRegistered = totalStudentsRegistered;
+		this.maximumStudentsAllowed = maximumStudentsAllowed;
+	}
 
 		public int getCourseId() {
-				return courseId;
-			}
-		
-	//	CREATE TABLE student_details(student_rollno INT PRIMARY KEY, student_first_name VARCHAR(20),student_last_name VARCHAR(20), student_gender  VARCHAR(20), student_address  VARCHAR(20), student_email_id  VARCHAR(30), student_phoneno INT, student_username  VARCHAR(20), student_password  VARCHAR(20));
-	//	VALUES (505 , 'John' , 'Peter', 'Male', 'Programming' , 'Coding Instructor' , '#25 Highway Street , Toronto', 'john.peter@gmail.com' , 'johnPeter12345', 'PeterJohn54321'); 
+			return courseId;
+		}
 
-	//	INSERT INTO student_details(student_rollno, student_first_name ,student_last_name , student_gender  , student_address  , student_email_id  , student_phoneno , student_username  , student_password  ) VALUES (301 , 'Jane' , 'Mall', 'Male', 'Surrey', 'janejmall@gmail.com' ,987564, 'janeMall45', 'good21ghr'); 
-	//	INSERT INTO student_details(student_rollno, student_first_name ,student_last_name , student_gender  , student_address  , student_email_id  , student_phoneno , student_username  , student_password  ) VALUES (302 , 'Eron' , 'Bage', 'Male', 'NewYork', 'eron.bage11@gmail.com' ,877565, 'EronBage11', 'Eron11Bage11'); 
-	//	INSERT INTO student_details(student_rollno, student_first_name ,student_last_name , student_gender  , student_address  , student_email_id  , student_phoneno , student_username  , student_password  ) VALUES (304 , 'Lisa' , 'Gauge', 'Female', 'Victoria', 'lisa11@gmail.com' ,87945, 'LisaGauge132', 'HelloLisa'); 
 
 		public void setCourseId(int courseId) {
 			this.courseId = courseId;
@@ -70,16 +66,6 @@ public class CoursePojo {
 
 		public void setCourseCode(String courseCode) {
 			this.courseCode = courseCode;
-		}
-
-
-		public String getCourseDescription() {
-			return courseDescription;
-		}
-
-
-		public void setCourseDescription(String courseDescription) {
-			this.courseDescription = courseDescription;
 		}
 
 
@@ -113,15 +99,43 @@ public class CoursePojo {
 		}
 
 
-		public String getCourseImageUrl() {
-			return courseImageUrl;
+		public String getCourseDescription() {
+			return courseDescription;
 		}
 
 
-		public void setCourseImageUrl(String courseImageUrl) {
-			this.courseImageUrl = courseImageUrl;
+		public void setCourseDescription(String courseDescription) {
+			this.courseDescription = courseDescription;
 		}
 
+
+		public int getTotalStudentsRegistered() {
+			return totalStudentsRegistered;
+		}
+
+
+		public void setTotalStudentsRegistered(int totalStudentsRegistered) {
+			this.totalStudentsRegistered = totalStudentsRegistered;
+		}
+
+
+		public int getMaximumStudentsAllowed() {
+			return maximumStudentsAllowed;
+		}
+
+
+		public void setMaximumStudentsAllowed(int maximumStudentsAllowed) {
+			this.maximumStudentsAllowed = maximumStudentsAllowed;
+		}
+
+
+		@Override
+		public String toString() {
+			return "CoursePojo [courseId=" + courseId + ", courseName=" + courseName + ", courseCode=" + courseCode
+					+ ", courseCost=" + courseCost + ", courseDuration=" + courseDuration + ", courseInstructorName="
+					+ courseInstructorName + ", courseDescription=" + courseDescription + ", totalStudentsRegistered="
+					+ totalStudentsRegistered + ", maximumStudentsAllowed=" + maximumStudentsAllowed + "]";
+		}
 
 		@Override
 		public int hashCode() {
@@ -132,12 +146,12 @@ public class CoursePojo {
 			result = prime * result + ((courseDescription == null) ? 0 : courseDescription.hashCode());
 			result = prime * result + courseDuration;
 			result = prime * result + courseId;
-			result = prime * result + ((courseImageUrl == null) ? 0 : courseImageUrl.hashCode());
 			result = prime * result + ((courseInstructorName == null) ? 0 : courseInstructorName.hashCode());
 			result = prime * result + ((courseName == null) ? 0 : courseName.hashCode());
+			result = prime * result + maximumStudentsAllowed;
+			result = prime * result + totalStudentsRegistered;
 			return result;
 		}
-
 
 		@Override
 		public boolean equals(Object obj) {
@@ -164,11 +178,6 @@ public class CoursePojo {
 				return false;
 			if (courseId != other.courseId)
 				return false;
-			if (courseImageUrl == null) {
-				if (other.courseImageUrl != null)
-					return false;
-			} else if (!courseImageUrl.equals(other.courseImageUrl))
-				return false;
 			if (courseInstructorName == null) {
 				if (other.courseInstructorName != null)
 					return false;
@@ -179,17 +188,11 @@ public class CoursePojo {
 					return false;
 			} else if (!courseName.equals(other.courseName))
 				return false;
+			if (maximumStudentsAllowed != other.maximumStudentsAllowed)
+				return false;
+			if (totalStudentsRegistered != other.totalStudentsRegistered)
+				return false;
 			return true;
 		}
-
-
-		@Override
-		public String toString() {
-			return "CoursePojo [courseId=" + courseId + ", courseName=" + courseName + ", courseDescription="
-					+ courseDescription + ", courseCost=" + courseCost + ", courseDuration=" + courseDuration
-					+ ", courseInstructorName=" + courseInstructorName + ", courseImageUrl=" + courseImageUrl
-					+ ", courseCode=" + courseCode + "]";
-		}
-		
 
 }

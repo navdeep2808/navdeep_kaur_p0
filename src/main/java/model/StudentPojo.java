@@ -9,12 +9,17 @@ public class StudentPojo {
 	private String studentAddress;
 	private String studentEmailId;
 	private long studentPhoneNumber;
-	private String studentUserName;
 	private String studentPassword;
+	private String courseRegistered;
+	private int courseId;
 	
+	public StudentPojo() {
+		//super();
+	}
+
 	public StudentPojo(int studentRollNumber, String studentFirstName, String studentLastName, String studentGender,
-			String studentAddress, String studentEmailId, long studentPhoneNumber, String studentUserName,
-			String studentPassword) {
+			String studentAddress, String studentEmailId, long studentPhoneNumber, String studentPassword,
+			String courseRegistered, int courseId) {
 		super();
 		this.studentRollNumber = studentRollNumber;
 		this.studentFirstName = studentFirstName;
@@ -23,8 +28,9 @@ public class StudentPojo {
 		this.studentAddress = studentAddress;
 		this.studentEmailId = studentEmailId;
 		this.studentPhoneNumber = studentPhoneNumber;
-		this.studentUserName = studentUserName;
 		this.studentPassword = studentPassword;
+		this.courseRegistered = courseRegistered;
+		this.courseId = courseId;
 	}
 
 	public int getStudentRollNumber() {
@@ -83,14 +89,6 @@ public class StudentPojo {
 		this.studentPhoneNumber = studentPhoneNumber;
 	}
 
-	public String getStudentUserName() {
-		return studentUserName;
-	}
-
-	public void setStudentUserName(String studentUserName) {
-		this.studentUserName = studentUserName;
-	}
-
 	public String getStudentPassword() {
 		return studentPassword;
 	}
@@ -99,14 +97,99 @@ public class StudentPojo {
 		this.studentPassword = studentPassword;
 	}
 
+	public String getCourseRegistered() {
+		return courseRegistered;
+	}
+
+	public void setCourseRegistered(String courseRegistered) {
+		this.courseRegistered = courseRegistered;
+	}
+
+	public int getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
+	}
+
 	@Override
 	public String toString() {
 		return "StudentPojo [studentRollNumber=" + studentRollNumber + ", studentFirstName=" + studentFirstName
 				+ ", studentLastName=" + studentLastName + ", studentGender=" + studentGender + ", studentAddress="
 				+ studentAddress + ", studentEmailId=" + studentEmailId + ", studentPhoneNumber=" + studentPhoneNumber
-				+ ", studentUserName=" + studentUserName + ", studentPassword=" + studentPassword + "]";
+				+ ", studentPassword=" + studentPassword + ", courseRegistered=" + courseRegistered + ", courseId="
+				+ courseId + "]";
 	}
-	
-	
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + courseId;
+		result = prime * result + ((courseRegistered == null) ? 0 : courseRegistered.hashCode());
+		result = prime * result + ((studentAddress == null) ? 0 : studentAddress.hashCode());
+		result = prime * result + ((studentEmailId == null) ? 0 : studentEmailId.hashCode());
+		result = prime * result + ((studentFirstName == null) ? 0 : studentFirstName.hashCode());
+		result = prime * result + ((studentGender == null) ? 0 : studentGender.hashCode());
+		result = prime * result + ((studentLastName == null) ? 0 : studentLastName.hashCode());
+		result = prime * result + ((studentPassword == null) ? 0 : studentPassword.hashCode());
+		result = prime * result + (int) (studentPhoneNumber ^ (studentPhoneNumber >>> 32));
+		result = prime * result + studentRollNumber;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StudentPojo other = (StudentPojo) obj;
+		if (courseId != other.courseId)
+			return false;
+		if (courseRegistered == null) {
+			if (other.courseRegistered != null)
+				return false;
+		} else if (!courseRegistered.equals(other.courseRegistered))
+			return false;
+		if (studentAddress == null) {
+			if (other.studentAddress != null)
+				return false;
+		} else if (!studentAddress.equals(other.studentAddress))
+			return false;
+		if (studentEmailId == null) {
+			if (other.studentEmailId != null)
+				return false;
+		} else if (!studentEmailId.equals(other.studentEmailId))
+			return false;
+		if (studentFirstName == null) {
+			if (other.studentFirstName != null)
+				return false;
+		} else if (!studentFirstName.equals(other.studentFirstName))
+			return false;
+		if (studentGender == null) {
+			if (other.studentGender != null)
+				return false;
+		} else if (!studentGender.equals(other.studentGender))
+			return false;
+		if (studentLastName == null) {
+			if (other.studentLastName != null)
+				return false;
+		} else if (!studentLastName.equals(other.studentLastName))
+			return false;
+		if (studentPassword == null) {
+			if (other.studentPassword != null)
+				return false;
+		} else if (!studentPassword.equals(other.studentPassword))
+			return false;
+		if (studentPhoneNumber != other.studentPhoneNumber)
+			return false;
+		if (studentRollNumber != other.studentRollNumber)
+			return false;
+		return true;
+	}
+
 }
