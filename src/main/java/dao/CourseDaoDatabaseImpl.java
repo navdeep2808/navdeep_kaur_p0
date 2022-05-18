@@ -85,9 +85,13 @@ public class CourseDaoDatabaseImpl implements CourseDao{
 			try {
 				conn = DBUtil.makeConnection();
 				Statement stmt = conn.createStatement();
+				System.out.println(courseId);
 
 				String query = "DELETE FROM course_details WHERE course_id="+courseId;
 				int rowsAffected = stmt.executeUpdate(query);
+				
+				String query1 = "DELETE FROM student_details WHERE course_id="+courseId;
+				int rowsAffected1 = stmt.executeUpdate(query1);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
