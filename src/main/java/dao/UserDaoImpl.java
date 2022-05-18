@@ -22,14 +22,14 @@ public class UserDaoImpl implements UserDao{
 		Connection conn = DBUtil.makeConnection();
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "insert into user_details(user_password, user_first_name, user_last_name, user_type, user_removed)" 
-							+ "values('"+userPojo.getUserPassword()+"','"+userPojo.getUserFirstName()
+			String query = "INSERT INTO user_details(user_password, user_first_name, user_last_name, user_type, user_removed, user_name)" 
+							+ " VALUES ('"+userPojo.getUserPassword()+"','"+userPojo.getUserFirstName()
 							+"','"+userPojo.getUserLastName()+"','"+userPojo.getUserType()
-							+"',"+userPojo.isUserRemoved()+") returning user_id";
+							+"',"+userPojo.isUserRemoved()+",'"+userPojo.getUserName()+"') returning user_id";
 			
-			ResultSet rs = stmt.executeQuery(query);
-			rs.next();
-			userPojo.setUserId(rs.getInt(1));
+			ResultSet resultSet = stmt.executeQuery(query);
+			resultSet.next();
+			userPojo.setUserId(resultSet.getInt(1));
 		} catch (SQLException e) {
 			throw new SystemException();
 		}
@@ -45,15 +45,16 @@ public class UserDaoImpl implements UserDao{
 		Connection conn = DBUtil.makeConnection();
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "select * from user_details where user_id="+userPojo.getUserId()
+			String query = "SELECT * FROM user_details WHERE user_id="+userPojo.getUserId()
 							+" and user_password='"+userPojo.getUserPassword()+"' and user_removed=false";
 			
-			ResultSet rs = stmt.executeQuery(query);
-			if(rs.next()) {
-				userPojo.setUserFirstName(rs.getString(3));
-				userPojo.setUserLastName(rs.getString(4));
-				userPojo.setUserType(rs.getString(5));
-				userPojo.setUserRemoved(rs.getBoolean(6));
+			ResultSet resultSet = stmt.executeQuery(query);
+			if(resultSet.next()) {
+				userPojo.setUserFirstName(resultSet.getString(3));
+				userPojo.setUserLastName(resultSet.getString(4));
+				userPojo.setUserType(resultSet.getString(5));
+				userPojo.setUserRemoved(resultSet.getBoolean(6));
+				userPojo.setUserName(resultSet.getString(7));
 			}
 		} catch (SQLException e) {
 			throw new SystemException();

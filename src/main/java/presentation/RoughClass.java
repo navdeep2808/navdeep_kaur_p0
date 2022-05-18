@@ -1,3 +1,6 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import exception.SystemException;
 import model.CoursePojo;
 
@@ -846,5 +849,61 @@ public static void main(String[] args) {
 				System.out.println("Do you want to continue?(y/n)");
 				proceed = scan.next().charAt(0);
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//// student dao part 17-05-2022
+		
+		System.out.println(studentPojo.getCourseRegistered());
+		String query1 = "SELECT * FROM course_details WHERE course_name='"+studentPojo.getCourseRegistered()+"'";
+		ResultSet resultSet1 = stmt.executeQuery(query1);
+		resultSet1.next();
+		int studentCourseId = resultSet1.getInt(1);
+		System.out.println("Foreign key course_id from course table in student table is :" +studentCourseId);
+		
+		String query2 = "SELECT * FROM student_details";
+		ResultSet resultSet2 = stmt.executeQuery(query2);
+		resultSet2.next();
+		int registeredCourseId = resultSet2.getInt(10);
+		System.out.println("Registered course id is:"+registeredCourseId);
+		
+		if(studentCourseId==registeredCourseId) {
+			System.out.println("Course Already Registered.. Choose a different Course..");
+		}else {
+				String query3 = "Insert into student_details (student_first_name, student_last_name, student_gender, student_address, student_email_id, student_phone_number, student_password, student_course_registered, course_id) VALUES ('"+studentPojo.getStudentFirstName()+"','"+ studentPojo.getStudentLastName()+"', '"+ studentPojo.getStudentGender()+"', '"+ studentPojo.getStudentAddress()+"', '"+ studentPojo.getStudentEmailId()+"','"+studentPojo.getStudentPhoneNumber()+"','"+studentPojo.getStudentPassword()+"','"+studentPojo.getCourseRegistered()+"','"+studentCourseId+"') returning student_roll_number"; 
+				ResultSet resultSet3 = stmt.executeQuery(query3);
+				resultSet3.next();	
+		
+				String query4 = "UPDATE course_details SET total_students_registered = total_students_registered + 1 WHERE course_id = " +registeredCourseId;
+				int rowsAffected4 = stmt.executeUpdate(query4);
+		}
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+		throw new SystemException();
+	}
+	return studentPojo;
 	
 	

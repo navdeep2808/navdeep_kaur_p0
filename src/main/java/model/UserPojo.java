@@ -8,12 +8,13 @@ public class UserPojo {
 	String userLastName;
 	String userType;
 	boolean userRemoved;
+	String userName;
 	
 	public UserPojo() {
 	}
 
 	public UserPojo(int userId, String userPassword, String userFirstName, String userLastName, String userType,
-			boolean userRemoved) {
+			boolean userRemoved, String userName) {
 		super();
 		this.userId = userId;
 		this.userPassword = userPassword;
@@ -21,6 +22,7 @@ public class UserPojo {
 		this.userLastName = userLastName;
 		this.userType = userType;
 		this.userRemoved = userRemoved;
+		this.userName = userName;
 	}
 
 	public int getUserId() {
@@ -71,10 +73,19 @@ public class UserPojo {
 		this.userRemoved = userRemoved;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	@Override
 	public String toString() {
-		return "LoginPojo [userId=" + userId + ", userPassword=" + userPassword + ", userFirstName=" + userFirstName
-				+ ", userLastName=" + userLastName + ", userType=" + userType + ", userRemoved=" + userRemoved + "]";
+		return "UserPojo [userId=" + userId + ", userPassword=" + userPassword + ", userFirstName=" + userFirstName
+				+ ", userLastName=" + userLastName + ", userType=" + userType + ", userRemoved=" + userRemoved
+				+ ", userName=" + userName + "]";
 	}
 
 }

@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import exception.CourseNotFoundException;
 import exception.SystemException;
 
 import model.CoursePojo;
+import model.StudentPojo;
 
 public class CourseDaoDatabaseImpl implements CourseDao{
 	
@@ -135,5 +137,66 @@ public class CourseDaoDatabaseImpl implements CourseDao{
 			}
 			return coursePojo;
 		}
-	
+/*
+		@Override
+		public List<CoursePojo> studentRegisteredCourses(StudentPojo studentPojo) throws EmptyCourseCatalogException, SystemException, CourseNotFoundException {
+			List<CoursePojo> allRegisteredCourses = new ArrayList<CoursePojo>();
+			CoursePojo coursePojo = new CoursePojo();
+			
+			StudentPojo studentPojoCourses = null;
+		
+			Connection conn = null;
+			try {
+				conn = DBUtil.makeConnection();
+				Statement stmt = conn.createStatement();
+				String query1 = "SELECT student_roll_number, student_first_name, student_last_name, course_id, student_course_registered FROM student_details WHERE user_id = "+studentPojo.getUserId()+"and course_id="+coursePojo.getCourseId();
+				ResultSet resultSet1 = stmt.executeQuery(query1);
+				int counter = 0;
+				while(resultSet1.next()) {
+					counter++;
+					//StudentPojo studentPojoCourses1 ;
+					StudentPojo studentPojoCourses1 = new StudentPojo (resultSet1.getInt(1), resultSet1.getString(2), resultSet1.getString(3), resultSet1.getString(4), resultSet1.getString(5), resultSet1.getString(6), resultSet1.getLong(7), resultSet1.getString(8), resultSet1.getString(9), resultSet1.getInt(10), resultSet1.getInt(11));
+					//allRegisteredCourses.add(studentPojoCourses1);
+					//allRegisteredCourses.addAll((Collection<? extends CoursePojo>) studentPojoCourses1);
+				}
+				if(counter == 0) {
+					throw new CourseNotFoundException();
+				}
+			} catch (SQLException e) {
+				throw new SystemException();
+			}
+			return allRegisteredCourses;
+		}
+	*/
+		/*
+		@Override
+		public List<StudentPojo> studentRegisteredCourses(StudentPojo studentPojo) throws EmptyCourseCatalogException, SystemException, CourseNotFoundException {
+			List<StudentPojo> allRegisteredCourses = new ArrayList<StudentPojo>();
+			CoursePojo coursePojo = new CoursePojo();
+			
+			//StudentPojo studentPojoCourses = null;
+		
+			Connection conn = null;
+			try {
+				conn = DBUtil.makeConnection();
+				Statement stmt = conn.createStatement();
+				String query1 = "SELECT student_roll_number, student_first_name, student_last_name, course_id, student_course_registered FROM student_details WHERE user_id = "+studentPojo.getUserId()+"and course_id="+coursePojo.getCourseId();
+				ResultSet resultSet1 = stmt.executeQuery(query1);
+				int counter = 0;
+				while(resultSet1.next()) {
+					counter++;
+					//StudentPojo studentPojoCourses1 ;
+					StudentPojo studentPojoCourses1 = new StudentPojo (resultSet1.getInt(1), resultSet1.getString(2), resultSet1.getString(3), resultSet1.getString(4), resultSet1.getString(5), resultSet1.getString(6), resultSet1.getLong(7), resultSet1.getString(8), resultSet1.getString(9), resultSet1.getInt(10), resultSet1.getInt(11));
+					allRegisteredCourses.add(studentPojoCourses1);
+					//allRegisteredCourses.addAll((Collection<? extends CoursePojo>) studentPojoCourses1);
+				}
+				if(counter == 0) {
+					throw new CourseNotFoundException();
+				}
+			} catch (SQLException e) {
+				throw new SystemException();
+			}
+			return allRegisteredCourses;
+		}
+		*/
 }

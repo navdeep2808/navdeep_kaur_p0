@@ -3,13 +3,17 @@ package service;
 import java.util.List;
 import dao.CourseDao;
 import dao.CourseDaoDatabaseImpl;
+import dao.StudentDao;
+import exception.CourseNotFoundException;
 import exception.EmptyCourseCatalogException;
 import exception.SystemException;
 import model.CoursePojo;
+import model.StudentPojo;
 
 public class CourseServiceImpl implements CourseService{
 	
 	CourseDao courseDao;
+	StudentDao studentDao;
 
 	public CourseServiceImpl() {
 		//courseDao = new CourseDaoCollectionImpl();
@@ -40,6 +44,5 @@ public class CourseServiceImpl implements CourseService{
 	public CoursePojo getACourse(int courseId) throws SystemException {
 		return courseDao.getACourse(courseId);
 	}
-
-	
+		
 }

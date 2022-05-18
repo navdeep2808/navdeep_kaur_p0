@@ -12,6 +12,7 @@ public class StudentPojo {
 	private String studentPassword;
 	private String courseRegistered;
 	private int courseId;
+	private int userId;
 	
 	public StudentPojo() {
 		//super();
@@ -19,7 +20,7 @@ public class StudentPojo {
 
 	public StudentPojo(int studentRollNumber, String studentFirstName, String studentLastName, String studentGender,
 			String studentAddress, String studentEmailId, long studentPhoneNumber, String studentPassword,
-			String courseRegistered, int courseId) {
+			String courseRegistered, int courseId, int userId) {
 		super();
 		this.studentRollNumber = studentRollNumber;
 		this.studentFirstName = studentFirstName;
@@ -31,6 +32,7 @@ public class StudentPojo {
 		this.studentPassword = studentPassword;
 		this.courseRegistered = courseRegistered;
 		this.courseId = courseId;
+		this.userId = userId;
 	}
 
 	public int getStudentRollNumber() {
@@ -113,13 +115,21 @@ public class StudentPojo {
 		this.courseId = courseId;
 	}
 
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public String toString() {
 		return "StudentPojo [studentRollNumber=" + studentRollNumber + ", studentFirstName=" + studentFirstName
 				+ ", studentLastName=" + studentLastName + ", studentGender=" + studentGender + ", studentAddress="
 				+ studentAddress + ", studentEmailId=" + studentEmailId + ", studentPhoneNumber=" + studentPhoneNumber
 				+ ", studentPassword=" + studentPassword + ", courseRegistered=" + courseRegistered + ", courseId="
-				+ courseId + "]";
+				+ courseId + ", userId=" + userId + "]";
 	}
 
 	@Override
@@ -136,6 +146,7 @@ public class StudentPojo {
 		result = prime * result + ((studentPassword == null) ? 0 : studentPassword.hashCode());
 		result = prime * result + (int) (studentPhoneNumber ^ (studentPhoneNumber >>> 32));
 		result = prime * result + studentRollNumber;
+		result = prime * result + userId;
 		return result;
 	}
 
@@ -188,6 +199,8 @@ public class StudentPojo {
 		if (studentPhoneNumber != other.studentPhoneNumber)
 			return false;
 		if (studentRollNumber != other.studentRollNumber)
+			return false;
+		if (userId != other.userId)
 			return false;
 		return true;
 	}

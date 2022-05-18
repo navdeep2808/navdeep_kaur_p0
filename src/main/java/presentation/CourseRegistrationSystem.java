@@ -1,8 +1,7 @@
 package presentation;
-
 	import java.util.List;
-
 	import java.util.Scanner;
+	import exception.CourseNotFoundException;
 	import exception.EmptyCourseCatalogException;
 	import exception.SystemException;
 	import model.CoursePojo;
@@ -28,11 +27,11 @@ package presentation;
 		public static void main(String[] args) throws Exception {
 			logger.info("User Management System Application started...");
 			
-			Scanner scan = new Scanner(System.in);
 			CourseService courseService = new CourseServiceImpl();
 			FacultyService facultyService = new FacultyServiceImpl();
 			StudentService studentService = new StudentServiceImpl();
 			UserService userService = new UserServiceImpl();
+			Scanner scan = new Scanner(System.in);
 
 			String userInput = scan.nextLine();
 			
@@ -63,11 +62,14 @@ package presentation;
 					System.out.println("Enter user password:");
 					userPojo.setUserPassword(scan.nextLine());
 					
+					System.out.println("Enter username:");
+					userPojo.setUserName(scan.nextLine());
+					
 					System.out.println("**********************************");
 					System.out.println("Choose the type of account:");
 					System.out.println("**********************************");
 					System.out.println("1. Faculty");
-					System.out.println("2. Study");
+					System.out.println("2. Student");
 					System.out.println("**********************************");
 					System.out.println("Enter your option:");
 					int typeOption = Integer.parseInt(scan.nextLine());
@@ -84,10 +86,11 @@ package presentation;
 					
 					UserPojo returnedUserPojo = null;
 					try {
+						System.out.println(userPojo);
 						returnedUserPojo = userService.register(userPojo);
 					} catch (SystemException e) {
 						System.out.println("**********************************");
-						System.out.println("Sorry!! There is some issue with the database...");
+						System.out.println("Database Error!!!!");
 						System.out.println("Please try after sometime....");
 						System.out.println("**********************************");
 						logger.error(e.getMessage());
@@ -104,7 +107,8 @@ package presentation;
 					
 					System.out.println("Enter user id:");
 					userLoginPojo.setUserId(Integer.parseInt(scan.nextLine()));
-					
+					//userLoginPojo.setUserName(scan.nextLine());
+
 					System.out.println("Enter user password:");
 					userLoginPojo.setUserPassword(scan.nextLine());
 					
@@ -113,7 +117,7 @@ package presentation;
 						returnedLoginUserPojo = userService.validateUser(userLoginPojo);
 					} catch (SystemException e) {
 						System.out.println("**********************************");
-						System.out.println("Sorry!! There is some issue with the database...");
+						System.out.println("Database Error!! ");
 						System.out.println("Please try after sometime....");
 						System.out.println("**********************************");
 						logger.error(e.getMessage());
@@ -123,16 +127,15 @@ package presentation;
 					String userType = returnedLoginUserPojo.getUserType();
 					if(userType !=null && userType.equals("faculty")) {
 						System.out.println("**********************************");
-						System.out.println("Customer Login successfull!!");
-						System.out.println("Display Faculty Menu.");
+						System.out.println("Faculty Login successfull!!");
 						System.out.println("**********************************");
-						//System.out.println("WELCOME TO COURSE REGISTRATION SYSTEM");
-					//	System.out.println("********************************************************************");
 						char proceed = 'y';
 						while(proceed == 'y') {
 							System.out.println("**********************************************************");
 							System.out.println("COURSE REGISTRATION SYSTEM FACULTY PORTAL");
 							System.out.println("**********************************************************");
+							System.out.println("HELLO "+returnedLoginUserPojo.getUserFirstName()+ " "+returnedLoginUserPojo.getUserLastName()+ "!");
+
 							System.out.println("1. List all Courses");
 							System.out.println("2. Add a new Course");
 							System.out.println("3. Delete a Course");
@@ -555,6 +558,7 @@ package presentation;
 							System.out.println("**********************************************************");
 							System.out.println("COURSE REGISTRATION SYSTEM STUDENT PORTAL");
 							System.out.println("**********************************************************");
+							System.out.println("HELLO "+returnedLoginUserPojo.getUserFirstName()+ " "+returnedLoginUserPojo.getUserLastName()+ "!");
 							System.out.println("1. View all Courses ");
 							System.out.println("2. Register in a new Course ");
 							System.out.println("3. Cancel a Registered course ");
@@ -591,7 +595,8 @@ package presentation;
 									
 								case 2: // register in a course - student area
 									StudentPojo newStudentPojo = new StudentPojo();
-
+									//int registeredStudentUserId = returnedLoginUserPojo.getUserId();
+									
 									System.out.println("***************************************************************************************");
 									System.out.println(" Register in a new Course");
 									System.out.println("***************************************************************************************");
@@ -621,8 +626,9 @@ package presentation;
 									scan.nextLine();
 									newStudentPojo.setCourseRegistered(scan.nextLine());
 									System.out.println(" Input Course Id of the Course you want to register :");
-									//scan.nextLong();
 									newStudentPojo.setCourseId(scan.nextInt());
+									System.out.println(" Input your user id :");
+									newStudentPojo.setUserId(scan.nextInt());
 									
 									StudentPojo studentPojo = null;
 									try {
@@ -653,6 +659,8 @@ package presentation;
 									System.out.println("Student Email Id : " + newStudentPojo.getStudentEmailId());
 									System.out.println("Student Phone Number" + newStudentPojo.getStudentPhoneNumber());
 									System.out.println("Student Registered Course Id: " + newStudentPojo.getCourseId());
+									System.out.println("Student User Id: " + newStudentPojo.getUserId());
+
 									System.out.println("Student Password: ");
 
 									System.out.println("*****************************");
@@ -662,33 +670,59 @@ package presentation;
 									
 								case 3:// cancel a registered course - student area
 									System.out.println("**********************************");
-									System.out.println("Cancel a Registered course ");
+									System.out.println("Cancel a Registered course......... ");
 									System.out.println("**********************************");
-
+									System.out.println("Enter the course id that you want to cancel :  ");
+									int cancelCourseId = scan.nextInt();
+									StudentPojo newStudentPojo1 = new StudentPojo();
+									StudentPojo registerdStudentPojo = null;
+									CoursePojo cancelCoursePojo = null;
+									cancelCoursePojo = courseService.getACourse(cancelCourseId);
+									
+									System.out.println("******************************************************************");
+									System.out.println("Course to be deleted is......");
+									System.out.println("*******************************************************************");
+									System.out.println("Course ID : " + cancelCoursePojo.getCourseId());
+									System.out.println("Course Name : " + cancelCoursePojo.getCourseName());
+									System.out.println("Course Code : " + cancelCoursePojo.getCourseCode());
+									System.out.println("Course Cost : " + cancelCoursePojo.getCourseCost());
+									System.out.println("Course Duration : " + cancelCoursePojo.getCourseDuration());
+									System.out.println("Course Instructor Name : " + cancelCoursePojo.getCourseInstructorName());
+									System.out.println("Course Description : " + cancelCoursePojo.getCourseDescription());
+									System.out.println("Course Instructor Name : " + cancelCoursePojo.getMaximumStudentsAllowed());
+									System.out.println("*******************************************************************");
+									
+									try {
+										registerdStudentPojo = studentService.cancelCourse(newStudentPojo1);
+									} catch (SystemException e) {
+										System.out.println(e.getMessage());
+										break;
+									}
+									System.out.println("Course deleted from your account successfully........ ");
+									System.out.println("Do you want to continue?(y/n)");
+									proceed = scan.next().charAt(0);
 									break;
 									
 								case 4: // view my registered courses - student area
 									System.out.println("**********************************");
 									System.out.println("View My Registered Courses");
 									System.out.println("**********************************");
+									System.out.println("Enter your user id");
+									int inputUserId = scan.nextInt();
+									List<StudentPojo> allCoursesRegistered;
+									StudentPojo viewStudentPojo = new StudentPojo();
+									//System.out.println(viewStudentPojo.getUserId());
+									allCoursesRegistered = studentService.studentRegisteredCourses(inputUserId);
 									
-									StudentPojo newStudentPojo1 = new StudentPojo();
-									StudentPojo registerdStudentPojo = null;
-									int registeredStudentRollNumber = newStudentPojo1.getStudentRollNumber();
-									System.out.println("Roll Number of student is : " + registeredStudentRollNumber);
-									try {
-										registerdStudentPojo = studentService.studentRegisteredCourses(registeredStudentRollNumber);
-									} catch (SystemException e) {
-										System.out.println(e.getMessage());
-										break;
-									}
-									System.out.println("*****************************");
-									System.out.println("Course Registered for Student having Roll Number :" + registeredStudentRollNumber);
-									System.out.println("*****************************");
-									
-									
+									System.out.println("***********************************************************************************************************************");
+									System.out.println("STUDENT ID\tFIRST NAME\tLAST NAME\tEMAIL ID\tCOURSE ID\tCOURSE NAME");
+									System.out.println("************************************************************************************************************************");
+									allCoursesRegistered.forEach((item)-> System.out.println(item.getUserId() + "\t\t" + item.getStudentFirstName() + "\t\t" +  item.getStudentLastName() + "\t\t" + item.getStudentEmailId() + "\t\t" + item.getCourseId() + "\t\t" + item.getCourseRegistered()));
+									System.out.println("************************************************************************************************************************");
+									System.out.println("Do you want to continue?(y/n)");
+									proceed = scan.next().charAt(0);
 									break;
-									
+																			
 								case 5: // exit case for exiting from student area
 									System.out.println("**********************************");
 									System.out.println("*******EXIT**********");
@@ -735,10 +769,10 @@ package presentation;
 				} else {
 					userService.exitApplication();
 					System.out.println("**********************************");
-					System.out.println("Thankyou for using the app!!");
+					System.out.println("Thankyou for using Course Registration System!!");
 					System.out.println("Exiting the application....");
 					System.out.println("**********************************");
-					logger.info("User Management System Application exited...");
+					logger.info("Course Registration System Application exited...");
 					scan.close();
 					System.exit(0);
 				}	

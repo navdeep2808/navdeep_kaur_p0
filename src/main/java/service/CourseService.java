@@ -2,9 +2,11 @@ package service;
 
 import java.util.List;
 
+import exception.CourseNotFoundException;
 import exception.EmptyCourseCatalogException;
 import exception.SystemException;
 import model.CoursePojo;
+import model.StudentPojo;
 
 public interface CourseService {
 
@@ -17,4 +19,5 @@ public interface CourseService {
 	List <CoursePojo> getAllCourses() throws EmptyCourseCatalogException, SystemException;
 	
 	CoursePojo getACourse(int courseId)throws SystemException;
+
 }

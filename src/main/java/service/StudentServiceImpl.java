@@ -2,10 +2,12 @@ package service;
 
 import java.util.List;
 
+
 import dao.CourseDao;
 import dao.CourseDaoDatabaseImpl;
 import dao.StudentDao;
 import dao.StudentDaoImpl;
+import exception.CourseNotFoundException;
 import exception.EmptyCourseCatalogException;
 import exception.EmptyStudentListException;
 import exception.SystemException;
@@ -34,14 +36,9 @@ public class StudentServiceImpl implements StudentService{
 	}
 
 	@Override
-	public StudentPojo studentRegisteredCourses(int studentRollNumber) throws SystemException {
-		return studentDao.studentRegisteredCourses(studentRollNumber);
-	}
+	public List<StudentPojo> studentRegisteredCourses(int userId) throws SystemException, CourseNotFoundException {
+		return studentDao.studentRegisteredCourses(userId);
 
-	@Override
-	public List<CoursePojo> getAllCourses() throws EmptyCourseCatalogException, SystemException {
-		// TODO Auto-generated method stub
-		return null;
 	}
-
+	
 }

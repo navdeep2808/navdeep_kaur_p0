@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 
 import dao.UserDao;
 import dao.UserDaoImpl;
-import exception.SystemException;
 import model.UserPojo;
 
 public class UserServiceImpl implements UserService  {

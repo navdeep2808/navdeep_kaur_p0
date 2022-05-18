@@ -3,6 +3,8 @@ package dao;
 import java.util.List;
 import exception.SystemException;
 import model.CoursePojo;
+import model.StudentPojo;
+import exception.CourseNotFoundException;
 import exception.EmptyCourseCatalogException;
 
 public interface CourseDao {
@@ -16,5 +18,7 @@ public interface CourseDao {
 	List <CoursePojo> getAllCourses() throws EmptyCourseCatalogException, SystemException;
 	
 	CoursePojo getACourse(int courseId) throws SystemException;
+	
+	//List<StudentPojo> studentRegisteredCourses(StudentPojo studentPojo)throws EmptyCourseCatalogException, SystemException, CourseNotFoundException;
 
 }
