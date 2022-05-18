@@ -16,7 +16,7 @@ public class UserDaoImpl implements UserDao{
 	private static final Logger logger = LogManager.getLogger(UserDaoImpl.class);
 	
 	@Override
-	public UserPojo register(UserPojo userPojo) throws SystemException, Exception {
+	public UserPojo registerUser(UserPojo userPojo) throws SystemException, Exception {
 		logger.info("Entered register() in dao.");
 		
 		Connection conn = DBUtil.makeConnection();

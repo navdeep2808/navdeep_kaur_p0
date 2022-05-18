@@ -22,7 +22,10 @@ package presentation;
 	import service.UserService;
 	import service.UserServiceImpl;
 	public class CourseRegistrationSystem {
-	private static final Logger logger = LogManager.getLogger(UserMain.class);
+	private static final Logger logger = LogManager.getLogger(CourseRegistrationSystem.class);
+	
+	//This is the main method to implement the Login and Registration Part of Course Registration System.
+	//This method also includes calls to classes implementing the Faculty andStudent USer Stories from Dao Layer
 		
 		public static void main(String[] args) throws Exception {
 			logger.info("User Management System Application started...");
@@ -37,11 +40,11 @@ package presentation;
 			
 			int option = 0;
 			String ch = "y";
-			
+			// User Registration and Validation Method Calls
 			while("y".equals(ch)) {
-				System.out.println("**********************************");
+				System.out.println("*******************************************");
 				System.out.println("WELCOME TO COURSE REGISTRATION SYSTEM");
-				System.out.println("**********************************");
+				System.out.println("*******************************************");
 				System.out.println("1. New user? Register here....");
 				System.out.println("2. Already have an Account? Login here....");
 				System.out.println("3. Exit.");
@@ -86,8 +89,8 @@ package presentation;
 					
 					UserPojo returnedUserPojo = null;
 					try {
-						System.out.println(userPojo);
-						returnedUserPojo = userService.register(userPojo);
+						//System.out.println(userPojo);
+						returnedUserPojo = userService.registerUser(userPojo);
 					} catch (SystemException e) {
 						System.out.println("**********************************");
 						System.out.println("Database Error!!!!");
@@ -130,6 +133,7 @@ package presentation;
 						System.out.println("Faculty Login successfull!!");
 						System.out.println("**********************************");
 						char proceed = 'y';
+						// Beginning Faculty Stories....
 						while(proceed == 'y') {
 							System.out.println("**********************************************************");
 							System.out.println("COURSE REGISTRATION SYSTEM FACULTY PORTAL");
@@ -214,8 +218,8 @@ package presentation;
 									System.out.println("Course ID : " + newCoursePojo.getCourseId());
 									System.out.println("Course Name : " + newCoursePojo.getCourseName());
 									System.out.println("Course Code : " + newCoursePojo.getCourseCode());
-									System.out.println("Course Cost : " + newCoursePojo.getCourseCost());
-									System.out.println("Course Duration : " + newCoursePojo.getCourseDuration());
+									System.out.println("Course Cost (USD) : " + newCoursePojo.getCourseCost());
+									System.out.println("Course Duration (Hours): " + newCoursePojo.getCourseDuration());
 									System.out.println("Course Instructor Name : " + newCoursePojo.getCourseInstructorName());
 									System.out.println("Course Description : " + newCoursePojo.getCourseDescription());
 									System.out.println("Total Students Registered : " + newCoursePojo.getTotalStudentsRegistered());
@@ -249,8 +253,8 @@ package presentation;
 										System.out.println("Course ID : " + getCoursePojo.getCourseId());
 										System.out.println("Course Name : " + getCoursePojo.getCourseName());
 										System.out.println("Course Code : " + getCoursePojo.getCourseCode());
-										System.out.println("Course Cost : " + getCoursePojo.getCourseCost());
-										System.out.println("Course Duration : " + getCoursePojo.getCourseDuration());
+										System.out.println("Course Cost (USD) : " + getCoursePojo.getCourseCost());
+										System.out.println("Course Duration (Hours) : " + getCoursePojo.getCourseDuration());
 										System.out.println("Course Instructor Name : " + getCoursePojo.getCourseInstructorName());
 										System.out.println("Course Description : " + getCoursePojo.getCourseDescription());
 										System.out.println("Total Students Registered : " + getCoursePojo.getTotalStudentsRegistered());
@@ -312,11 +316,11 @@ package presentation;
 										System.out.println("Course ID : " + updateCoursePojo.getCourseId());
 										System.out.println("Course Name : " + updateCoursePojo.getCourseName());
 										System.out.println("Course Code : " + updateCoursePojo.getCourseCode());
-										System.out.println("Course Cost : " + updateCoursePojo.getCourseCost());
-										System.out.println("Course Duration : " + updateCoursePojo.getCourseDuration());
+										System.out.println("Course Cost (USD): " + updateCoursePojo.getCourseCost());
+										System.out.println("Course Duration (Hours) : " + updateCoursePojo.getCourseDuration());
 										System.out.println("Course Instructor Name : " + updateCoursePojo.getCourseInstructorName());
 										System.out.println("Course Description : " + updateCoursePojo.getCourseDescription());
-										System.out.println("Course Instructor Name : " + updateCoursePojo.getMaximumStudentsAllowed());
+										System.out.println("Maximum Students Allowed  : " + updateCoursePojo.getMaximumStudentsAllowed());
 
 									
 										System.out.println("***************************************************************************************");
@@ -467,11 +471,11 @@ package presentation;
 													System.out.println("Course ID : " + updateCoursePojo1.getCourseId());
 													System.out.println("Course Name : " + updateCoursePojo1.getCourseName());
 													System.out.println("Course Code : " + updateCoursePojo1.getCourseCode());
-													System.out.println("Course Cost : " + updateCoursePojo1.getCourseCost());
-													System.out.println("Course Duration : " + updateCoursePojo1.getCourseDuration());
+													System.out.println("Course Cost (USD) : " + updateCoursePojo1.getCourseCost());
+													System.out.println("Course Duration (Hours) : " + updateCoursePojo1.getCourseDuration());
 													System.out.println("Course Instructor Name : " + updateCoursePojo1.getCourseInstructorName());
 													System.out.println("Course Description : " + updateCoursePojo1.getCourseDescription());
-													System.out.println("Course Instructor Name : " + updateCoursePojo1.getMaximumStudentsAllowed());
+													System.out.println("Maximum Students Allowed : " + updateCoursePojo1.getMaximumStudentsAllowed());
 													System.out.println("*******************************************************************");
 													System.out.println("Please enter new Course Name :");
 													scan.nextLine();
@@ -521,11 +525,11 @@ package presentation;
 											System.out.println("Course ID : " + updateCoursePojo.getCourseId());
 											System.out.println("Course Name : " + updateCoursePojo.getCourseName());
 											System.out.println("Course Code : " + updateCoursePojo.getCourseCode());
-											System.out.println("Course Cost : " + updateCoursePojo.getCourseCost());
-											System.out.println("Course Duration : " + updateCoursePojo.getCourseDuration());
+											System.out.println("Course Cost (USD) : " + updateCoursePojo.getCourseCost());
+											System.out.println("Course Duration (Hours) : " + updateCoursePojo.getCourseDuration());
 											System.out.println("Course Instructor Name : " + updateCoursePojo.getCourseInstructorName());
 											System.out.println("Course Description : " + updateCoursePojo.getCourseDescription());
-											System.out.println("Course Description : " + updateCoursePojo.getMaximumStudentsAllowed());
+											System.out.println("Maximum Students Allowed  : " + updateCoursePojo.getMaximumStudentsAllowed());
 
 											System.out.println("***************************************************************************************");
 											System.out.println("Do you want to continue?(y/n)");
@@ -550,6 +554,8 @@ package presentation;
 								}// faculty main all options closed faculty 5 options switch closed list all courses,add,delete,update etc
 								
 						}
+						
+						//Beginning Student Stories
 					}else if(userType !=null && userType.equals("student")) {
 						System.out.println("**********************************");
 						System.out.println("Student Login successfull..!!");
@@ -685,11 +691,11 @@ package presentation;
 									System.out.println("Course ID : " + cancelCoursePojo.getCourseId());
 									System.out.println("Course Name : " + cancelCoursePojo.getCourseName());
 									System.out.println("Course Code : " + cancelCoursePojo.getCourseCode());
-									System.out.println("Course Cost : " + cancelCoursePojo.getCourseCost());
-									System.out.println("Course Duration : " + cancelCoursePojo.getCourseDuration());
+									System.out.println("Course Cost (USD) : " + cancelCoursePojo.getCourseCost());
+									System.out.println("Course Duration (Hours) : " + cancelCoursePojo.getCourseDuration());
 									System.out.println("Course Instructor Name : " + cancelCoursePojo.getCourseInstructorName());
 									System.out.println("Course Description : " + cancelCoursePojo.getCourseDescription());
-									System.out.println("Course Instructor Name : " + cancelCoursePojo.getMaximumStudentsAllowed());
+									System.out.println("Maximum Students Allowed 8 : " + cancelCoursePojo.getMaximumStudentsAllowed());
 									System.out.println("*******************************************************************");
 									
 									try {

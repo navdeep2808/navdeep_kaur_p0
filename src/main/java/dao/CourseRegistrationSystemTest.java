@@ -52,24 +52,7 @@ class CourseRegistrationSystemTest {
 			assertEquals(expectedPojo, actualPojo);
 		}
 		
-		// JUnit 5 test method  - deleteCourse
-				@Test
-				public void testDeleteCourse() {
-					CourseService courseService = new CourseServiceImpl();
-			
-					CoursePojo expectedPojo = new CoursePojo(100, "JUnit 5", "CS189", 105, 35, "Maple", "Learn JUnit 5",0,20);
-					int expectedDeleteCourseId = expectedPojo.getCourseId();
-					int actualDeleteCourseId = 0;
-					try {
-						CoursePojo coursePojo = new CoursePojo();
-						actualDeleteCourseId = courseService.deleteCourse(coursePojo);
-					} catch (SystemException e) {
-						e.printStackTrace();
-					}
-					assertEquals(expectedDeleteCourseId, actualDeleteCourseId);
-				}
-				
-				// JUnit 5 test method  - getACourse
+			// JUnit 5 test method  - getACourse
 				@Test
 				public void testGetAllCourses() throws EmptyCourseCatalogException {
 					CourseService courseService = new CourseServiceImpl();

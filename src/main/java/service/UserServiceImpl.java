@@ -19,9 +19,9 @@ public class UserServiceImpl implements UserService  {
 	}
 
 	@Override
-	public UserPojo register(UserPojo userPojo) throws Exception {
+	public UserPojo registerUser(UserPojo userPojo) throws Exception {
 		logger.info("Entered register() in service.");
-		UserPojo returnUserPojo = this.userDao.register(userPojo);
+		UserPojo returnUserPojo = this.userDao.registerUser(userPojo);
 		logger.info("Exited register() in service.");
 		return returnUserPojo;	
 	}

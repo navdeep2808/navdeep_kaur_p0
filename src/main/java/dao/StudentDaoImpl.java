@@ -81,9 +81,14 @@ public class StudentDaoImpl implements StudentDao {
 		try {
 			conn = DBUtil.makeConnection();
 			Statement stmt = conn.createStatement();
+			
+			//System.out.println("Student registered CourseId is: "+studentPojo.getCourseId()+"Student User Id is: "+studentPojo.getUserId());
 
-			String query = "DELETE FROM student_details WHERE course_id="+studentPojo.getCourseId();
+			String query = "DELETE FROM student_details WHERE course_id = "+studentPojo.getCourseId()+"AND user_id = "+studentPojo.getUserId();
 			int rowsAffected = stmt.executeUpdate(query);
+			
+			String query1 = "UPDATE course_details SET total_students_registered = total_students_registered - 1 WHERE course_id = " +studentPojo.getCourseId();
+			int rowsAffected1 = stmt.executeUpdate(query1);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
